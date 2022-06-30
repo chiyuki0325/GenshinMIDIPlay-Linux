@@ -41,7 +41,7 @@ async def run(command):
     process = await create_subprocess_exec(*command, stdout=PIPE, stderr=PIPE)
     print("正在自动演奏 ...")
     await asyncio.wait([asyncio.create_task(_read_stream(process.stdout))])
-    await process.wait()
+    process.wait()
 
 
 async def main():
@@ -49,4 +49,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.new_event_loop().run_until_complete(main())
+    asyncio.run(main())
